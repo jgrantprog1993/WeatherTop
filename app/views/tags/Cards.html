@@ -1,0 +1,82 @@
+<div class="ui inverted five stackable cards">
+
+        <div class="black card">
+            <div class="content">
+
+                #{list items:_station, as:'station'}
+                <i class="ui right floated fitted inverted purple primary huge map marker icon"></i>
+                <div class="header">${station.getName()}</div>
+                #{/list}
+                <div class="description">
+                </div>
+            </div>
+        </div>
+        #{if _station.readings.size() >0}
+        <div class="black card">
+            <div class="content">
+                #{list items:_station.readings, as:'reading'}
+                #{/list}
+                <i class="${reading.WeatherIcon(reading.getCode())}"></i>
+                <div class="header">Weather</div>
+
+
+                <div class="description">
+                    ${reading.Weather(reading.getCode())}
+                </div>
+            </div>
+        </div>
+        <div class="black card">
+            <div class="content">
+                <i class="${reading.TempIcon(reading.TempF(reading.getTemperature()))}"></i>
+                <div class="header">Temp</div>
+                  <div class="description">
+                         ${reading.getTemperature()} C <br />
+                         ${reading.TempF(reading.getTemperature())} F
+
+                         <h4>Max -> ${station.maxTemperature} </h4>
+                         <h4>Min -> ${station.minTemperature} </h4>
+
+                 </div>
+              </div>
+          </div>
+          <div class="black card">
+              <div class="content">
+                  <i class="${reading.WindIcon(reading.kMhr_Bft(reading.getWindSpeed()))}"></i>
+                  <div class="header">Wind</div>
+                  <div class="description">
+
+                      ${reading.kMhr_Bft(reading.getWindSpeed())} bft <br />
+                      ${reading.windDirection_Text(reading.getWindDirection())}  <br />
+                      Feels Like -> ${reading.windChillCalc(reading.getTemperature(),reading.getWindSpeed())}  <br />
+                      ${reading.kMhr_BftLabel(reading.getWindSpeed())} <br />
+
+                      <h4>Max -> ${station.maxWindSpeed} </h4>
+                      <h4>Min -> ${station.minWindSpeed} </h4>
+
+                  </div>
+
+              </div>
+
+          </div>
+
+          <div class="black card">
+              <div class="content">
+                  <i class="ui right floated fitted inverted primary huge dumbbell icon"></i>
+                  <div class="header">Pressure
+                  </div>
+
+                  <div class="description">
+                      ${reading.getPressure()} hpa <br />
+
+                      <h4>Max -> ${station.maxPressure} </h4>
+                      <h4>Min -> ${station.minPressure} </h4>
+
+                  </div>
+
+              </div>
+              #{/if}
+          </div>
+
+</div>
+
+
