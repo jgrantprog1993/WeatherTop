@@ -1,5 +1,9 @@
-# play-template-1
+# WeatherTop-V4.0
 
-This is a sample starter project for this course:
+This is Version 4.0 (release 2) of the WeatherTop application
 
-- [Web Development](https://tutors-design.netlify.com/course/wit-hdip-comp-sci-2020-web-development.netlify.com)
+This version includes all features in the previous release, plus 4 new capabilities
+1. User Accounts
+2. Location of Station
+3. Current Weather Icon
+4. Max/Min
