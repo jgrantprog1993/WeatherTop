@@ -76,11 +76,36 @@ public class StationAnalytics {
         if (readings.size() > 0) {
             minPressure = readings.get(0);
             for (Reading reading : readings) {
-                if (reading.getWindSpeed() < minPressure.getPressure()) {
+                if (reading.getPressure() < minPressure.getPressure()) {
                     minPressure = reading;
                 }
             }
         }
         return minPressure.getPressure();
+    }
+
+    public static String getTrend(List<Reading> readings) {
+        String tempTrend = "";
+        Reading tempTrendVar1 = null;
+        Reading tempTrendVar2 = null;
+        Reading tempTrendVar3 = null;
+        if (readings.size() > 0) {
+            tempTrendVar1 = readings.get(0);
+            tempTrendVar2 = readings.get(1);
+            tempTrendVar3 = readings.get(2);
+
+            for (Reading reading : readings) {
+                if (tempTrendVar1.getTemperature()> tempTrendVar2.getTemperature() && tempTrendVar2.getTemperature()>tempTrendVar3.getTemperature()) {
+                    tempTrend = "ui right floated fitted huge angle up icon";
+                }
+                else if (tempTrendVar1.getTemperature()< tempTrendVar2.getTemperature() && tempTrendVar2.getTemperature()<tempTrendVar3.getTemperature()) {
+                    tempTrend = "ui right floated fitted huge angle down icon";
+                }
+                else{
+                    tempTrend = "ui right floated fitted huge arrows alternate horizontal icon";
+                }
+            }
+        }
+        return tempTrend;
     }
 }

@@ -32,7 +32,7 @@
                   <div class="description">
                          ${reading.getTemperature()} C <br />
                          ${reading.TempF(reading.getTemperature())} F
-
+                      <i class="${reading.getTrend(reading.TempF(reading.getTemperature()))}"></i>
                          <h4>Max -> ${station.maxTemperature} </h4>
                          <h4>Min -> ${station.minTemperature} </h4>
 
