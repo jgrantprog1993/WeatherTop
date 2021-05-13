@@ -94,7 +94,6 @@ public class StationAnalytics {
             tempTrendVar2 = readings.get(1);
             tempTrendVar3 = readings.get(2);
 
-            for (Reading reading : readings) {
                 if (tempTrendVar1.getTemperature()> tempTrendVar2.getTemperature() && tempTrendVar2.getTemperature()>tempTrendVar3.getTemperature()) {
                     tempTrend = "ui right floated fitted huge angle up icon";
                 }
@@ -104,7 +103,7 @@ public class StationAnalytics {
                 else{
                     tempTrend = "ui right floated fitted huge arrows alternate horizontal icon";
                 }
-            }
+
         }
         return tempTrend;
     }
