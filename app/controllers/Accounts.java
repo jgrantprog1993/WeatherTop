@@ -13,7 +13,7 @@ public class Accounts extends Controller
 
     public static void login()
     {
-        render("login.html");
+        render("Login.html");
     }
 
     public static void register(String firstname, String lastname, String email, String password)
