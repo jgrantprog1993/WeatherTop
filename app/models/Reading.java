@@ -101,6 +101,22 @@ public class Reading extends Model {
         double temperatureF = ((temperature * 1.8) + 32);
         return temperatureF;
     }
+
+    public String TrendIcon(double trendVar1,double trendVar2,double trendVar3)
+    {
+        String trendIcon = "";
+        if ((trendVar1> trendVar2) && (trendVar2> trendVar3)) {
+            trendIcon = "ui right floated fitted huge angle up icon";
+        }
+        else if ((trendVar1 < trendVar2) && (trendVar2 < trendVar3)) {
+            trendIcon = "ui right floated fitted huge angle down icon";
+        }
+        else{
+            trendIcon = "ui right floated fitted huge arrows alternate horizontal icon";
+        }
+        return trendIcon;
+    }
+
     public String TempIcon(double temperatureF) {
         String tempIcon = "";
         if(temperatureF>=50 && temperatureF<=59)

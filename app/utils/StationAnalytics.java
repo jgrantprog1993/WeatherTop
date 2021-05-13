@@ -84,7 +84,7 @@ public class StationAnalytics {
         return minPressure.getPressure();
     }
 
-    public static String getTrend(List<Reading> readings) {
+   /* public static String getTrend(List<Reading> readings) {
         String tempTrend = "";
         Reading tempTrendVar1 = null;
         Reading tempTrendVar2 = null;
@@ -106,5 +106,5 @@ public class StationAnalytics {
 
         }
         return tempTrend;
-    }
+    }*/
 }
