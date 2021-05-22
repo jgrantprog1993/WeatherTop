@@ -56,4 +56,27 @@ public class Accounts extends Controller
         }
         return member;
     }
+
+    public static void user()
+    {
+        Member member = Accounts.getLoggedInMember();
+        render("edituser.html", member);
+    }
+
+    public static void editLoggedInUser(String firstname, String lastname, String email, String password)
+    {
+        String memberId = session.get("logged_in_Memberid");
+        Member member = Member.findById(Long.parseLong(memberId));
+        member.setNewPassword(password);
+        member.setNewUsername(email);
+        member.setNewFirstName(firstname);
+        member.setNewSecondName(lastname);
+        member.save();
+        Logger.info("updated user info");
+        redirect("/");
+
+        //Member memberNew = new Member(firstname, lastname, email, password);
+
+    }
+
 }

@@ -1,11 +1,20 @@
 <nav class="ui menu">
-  <header class="ui header item"> <a href="/"> Weather Top </a></header>
-  <header class="ui header item"> <h3> WeatherTop Stations </h3></header>
+
+  <header class="ui header item"> <a href="/"> WeatherTop </a></header>
+  <header class="ui header item"> <h3> #{get 'title'} WeatherTop #{/}</h3></header> <!--https://www.playframework.com/documentation/1.2/tags @GET-->
+
   <div class="right menu">
+
     <a id="dashboard" class="item" href="/dashboard"> Dashboard  </a>
+
     <a id="about" class="item" href="/about"> About </a>
+
+    <a id="user" class="item" href="/user">  User Profile </a>
+
     <a id="logout" class="item" href="/logout"> Logout </a>
+
   </div>
+
 </nav>
 
 <script>

@@ -1,21 +1,26 @@
 #{extends 'main.html' /}
-#{set title:'Dashboard' /}
+#{set title:'WeatherTop Dashboard' /}
 
 #{menu id:"dashboard"/}
 
-#{list items:stations, as:'station'}
+#{list items:station, as:'station'}
 <section class="ui segment">
   <h2 class="ui header">
     ${station.getName()}
+
   </h2>
 
-  LAT: ${station.getLat()} </br>
-  LNG: ${station.getLng()} </br></br></br>
+  #{cards station:station /} </br>
 
   <a href = "/stations/${station.id}" class="ui icon button">
     <i class="ui icon folder open"></i>
   </a>
-
+  <a href = "/dashboard/deletestation/${station.id}" class="ui icon button">
+    <i class="ui icon trash"></i>
+  </a>
 </section>
+
 #{/list}
+
 #{addstation /}
+#{footer /}

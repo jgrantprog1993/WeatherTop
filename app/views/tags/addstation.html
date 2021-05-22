@@ -6,11 +6,11 @@
         </div>
         <div class="field">
             <label>Lattitude</label>
-            <input placeholder="Latitude" type="number" step=any name="latitude"> <!--https://stackoverflow.com/questions/19011861/is-there-a-float-input-type-in-html5-->
+            <input placeholder="Latitude" type="number" step=any  min="-90" max="90" name="latitude"> <!--https://stackoverflow.com/questions/19011861/is-there-a-float-input-type-in-html5-->
         </div>
         <div class="field">
             <label>Longitude</label>
-            <input placeholder="Longitude" type="number" step=any name="longitude">
+            <input placeholder="Longitude" type="number" step=any min="-180" max="180" name="longitude">
         </div>
     </div>
     <button class="ui blue submit button">Add Station</button>
