@@ -28,6 +28,9 @@ public class Station extends Model
     public double maxTemperature;
     public double minTemperature;
 
+    public String tempTrend;
+    public String windTrend;
+    public String pressureTrend;
 
     public Station(String name, float latitude, float longitude)
     {

@@ -5,9 +5,12 @@
 
                 #{list items:_station, as:'station'}
                 <i class="ui right floated fitted inverted purple primary huge map marker icon"></i>
-                <div class="header">${station.getName()}</div>
+                <div class="header">${station.getName()}</div> </br>
+
                 #{/list}
                 <div class="description">
+                    LNG : ${station.getLat()} </br>
+                    LAT : ${station.getLng()}
                 </div>
             </div>
         </div>
@@ -32,7 +35,9 @@
                   <div class="description">
                          ${reading.getTemperature()} C <br />
                          ${reading.TempF(reading.getTemperature())} F
-                      <i class="${reading.TrendIcon(reading.get(0).getTemperature(),reading.get(1).getTemperature(),reading.get(2).getTemperature())}"></i>
+
+                      <div class="right floated meta"><i class="${station.tempTrend}"></i></div>
+
                          <h4>Max -> ${station.maxTemperature} </h4>
                          <h4>Min -> ${station.minTemperature} </h4>
 
@@ -50,6 +55,8 @@
                       Feels Like -> ${reading.windChillCalc(reading.getTemperature(),reading.getWindSpeed())}  <br />
                       ${reading.kMhr_BftLabel(reading.getWindSpeed())} <br />
 
+                      <div class="right floated meta"><i class="${station.windTrend}"></i></div>
+
                       <h4>Max -> ${station.maxWindSpeed} </h4>
                       <h4>Min -> ${station.minWindSpeed} </h4>
 
@@ -61,12 +68,14 @@
 
           <div class="black card">
               <div class="content">
-                  <i class="ui right floated fitted inverted primary huge dumbbell icon"></i>
+                  <i class="${reading.PressureIcon(reading.getPressure())}"></i>
                   <div class="header">Pressure
                   </div>
 
                   <div class="description">
                       ${reading.getPressure()} hpa <br />
+
+                      <div class="right floated meta"><i class="${station.pressureTrend}"></i></div>
 
                       <h4>Max -> ${station.maxPressure} </h4>
                       <h4>Min -> ${station.minPressure} </h4>

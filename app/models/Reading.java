@@ -1,10 +1,18 @@
 package models;
 import javax.persistence.Entity;
 
+import org.joda.time.DateTime;
 import play.db.jpa.Model;
-
+import play.Logger;
 import java.math.RoundingMode;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;                      ///imported date to use Date as a type, as per advice on Slack
+import java.util.HashMap;
+
 
 @Entity
 public class Reading extends Model {
@@ -13,19 +21,20 @@ public class Reading extends Model {
     private double windSpeed;
     private double pressure;
     private double windDirection;
-    //public String county;
+    public Date dateTime;
 
 
-    public Reading(int code, double temperature, double windSpeed, double pressure, double windDirection) {
+    public Reading(int code, double temperature, double windSpeed, double pressure, double windDirection, Date date) {
         this.code = code;
         this.temperature = temperature;
         this.windSpeed = windSpeed;
         this.pressure = pressure;
         this.windDirection = windDirection;
-        //this.county = county;
+        this.dateTime = date;
+
 
     }
-
+    /*
     public String Weather(int code) {
         String weather = "";
         switch (code) {
@@ -61,6 +70,22 @@ public class Reading extends Model {
 
         return weather;
     }
+    */
+
+    public static String Weather(int code) {
+        HashMap<Integer,String> weather = new HashMap<Integer,String>();
+        weather.put(100,"Clear");
+        weather.put(200,"Partial clouds");
+        weather.put(300,"Cloudy");
+        weather.put(400,"Light Showers");
+        weather.put(500,"Heavy Showers");
+        weather.put(600,"Rain");
+        weather.put(700,"Snow");
+        weather.put(800,"Thunder");
+        weather.put(900,"Varied");
+        return weather.get(code);
+    }
+
     public String WeatherIcon(int code) {
         String weatherIcon = "";
         switch (code) {
@@ -102,24 +127,9 @@ public class Reading extends Model {
         return temperatureF;
     }
 
-    public String TrendIcon(double trendVar1,double trendVar2,double trendVar3)
-    {
-        String trendIcon = "";
-        if ((trendVar1> trendVar2) && (trendVar2> trendVar3)) {
-            trendIcon = "ui right floated fitted huge angle up icon";
-        }
-        else if ((trendVar1 < trendVar2) && (trendVar2 < trendVar3)) {
-            trendIcon = "ui right floated fitted huge angle down icon";
-        }
-        else{
-            trendIcon = "ui right floated fitted huge arrows alternate horizontal icon";
-        }
-        return trendIcon;
-    }
-
     public String TempIcon(double temperatureF) {
         String tempIcon = "";
-        if(temperatureF>=50 && temperatureF<=59)
+        if(temperatureF>=49 && temperatureF<=59)
         {
           tempIcon = "ui right floated fitted inverted huge grey temperature low icon";
         }
@@ -127,7 +137,7 @@ public class Reading extends Model {
         {
             tempIcon = "ui right floated fitted inverted huge teal temperature low icon";
         }
-        else if(temperatureF>=33 && temperatureF<=41)
+        else if(temperatureF>=32 && temperatureF<=41)
         {
             tempIcon = "ui right floated fitted inverted huge blue temperature low icon";
         }
@@ -143,6 +153,32 @@ public class Reading extends Model {
         }
         return tempIcon;
     }
+    public String PressureIcon(double pressure) {
+        String pressureIcon = "";
+        if(pressure<=980)
+        {
+            pressureIcon = "ui right floated fitted inverted primary blue dumbbell icon";
+        }
+        else if(pressure>980 && pressure<=990)
+        {
+            pressureIcon = "ui right floated fitted inverted primary large teal dumbbell icon";
+        }
+        else if(pressure>990 && pressure<=1000)
+        {
+            pressureIcon = "ui right floated fitted inverted primary big yellow dumbbell icon";
+        }
+        else if(pressure>1000 && pressure<=1010)
+        {
+            pressureIcon = "ui right floated fitted inverted primary huge orange dumbbell icon";
+        }
+        else if(pressure>1010)
+        {
+            pressureIcon = "ui right floated fitted inverted primary huge red dumbbell icon";
+        }
+
+        return pressureIcon;
+    }
+
 
     public int kMhr_Bft(double windSpeed) {
         int bFTScale = 0;
@@ -309,6 +345,9 @@ public class Reading extends Model {
         return temperature;
     }
 
+    public Date getDateTime() {
+        return dateTime; ///////////////https://www.baeldung.com/java-string-to-date
+    }
 
     public void setTemperature(double temperature) {
         this.temperature = temperature;
@@ -337,6 +376,7 @@ public class Reading extends Model {
         this.windDirection=windDirection;
     }
 
-   // public double getMaxTemp()
+
+    // public double getMaxTemp()
 
 }

@@ -36,4 +36,15 @@ public class Member extends Model
     {
         return this.password.equals(password);
     }
+
+    public void setNewFirstName(String firstname)
+    { this.firstname = firstname;}
+    public void setNewSecondName(String lastname)
+    { this.lastname = lastname;}
+    public void setNewUsername(String email )
+    { this.email = email;}
+    public void setNewPassword(String password)
+    { this.password = password;}
+
+
 }

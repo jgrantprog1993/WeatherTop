@@ -1,12 +1,15 @@
 package utils;
 
 import models.Reading;
-
+import models.Station;
+import play.Logger;
 import java.util.List;
+import java.util.*;
 
 public class StationAnalytics {
 
     public static double getMaxTemp(List<Reading> readings) {
+
         Reading maxTemp = null;
         if (readings.size() > 0) {
             maxTemp = readings.get(0);
@@ -84,27 +87,89 @@ public class StationAnalytics {
         return minPressure.getPressure();
     }
 
-   /* public static String getTrend(List<Reading> readings) {
+   public static String getTrend(List<Reading> readings) {
         String tempTrend = "";
         Reading tempTrendVar1 = null;
         Reading tempTrendVar2 = null;
         Reading tempTrendVar3 = null;
-        if (readings.size() > 0) {
-            tempTrendVar1 = readings.get(0);
-            tempTrendVar2 = readings.get(1);
-            tempTrendVar3 = readings.get(2);
+        if (readings.size() > 2) {
+
+            tempTrendVar1 = readings.get(readings.size()-1);
+            tempTrendVar2 = readings.get(readings.size()-2);
+            tempTrendVar3 = readings.get(readings.size()-3);
+
+            //Logger.info("PT = " + tempTrendVar1 + ", " + tempTrendVar2 + ", " + tempTrendVar3);
 
                 if (tempTrendVar1.getTemperature()> tempTrendVar2.getTemperature() && tempTrendVar2.getTemperature()>tempTrendVar3.getTemperature()) {
-                    tempTrend = "ui right floated fitted huge angle up icon";
+                    tempTrend = "huge angle up icon";
                 }
                 else if (tempTrendVar1.getTemperature()< tempTrendVar2.getTemperature() && tempTrendVar2.getTemperature()<tempTrendVar3.getTemperature()) {
-                    tempTrend = "ui right floated fitted huge angle down icon";
+                    tempTrend = "huge angle down icon ";
                 }
                 else{
-                    tempTrend = "ui right floated fitted huge arrows alternate horizontal icon";
+                    tempTrend = "huge arrows alternate horizontal icon";
                 }
 
         }
         return tempTrend;
-    }*/
+    }
+
+    public static String getTrendWS(List<Reading> readings) {
+        String windSpeedTrend = "";
+        Reading windSpeedTrendVar1 = null;
+        Reading windSpeedTrendVar2 = null;
+        Reading windSpeedTrendVar3 = null;
+        if (readings.size() > 2) {
+
+            windSpeedTrendVar1 = readings.get(readings.size()-1);
+            windSpeedTrendVar2 = readings.get(readings.size()-2);
+            windSpeedTrendVar3 = readings.get(readings.size()-3);
+
+            //Logger.info("PT = " + windSpeedTrendVar1.getWindSpeed() + ", " + windSpeedTrendVar2.getWindSpeed() + ", " + windSpeedTrendVar3.getWindSpeed());
+            if (windSpeedTrendVar1.getWindSpeed()> windSpeedTrendVar2.getWindSpeed() && windSpeedTrendVar2.getWindSpeed()>windSpeedTrendVar3.getWindSpeed()) {
+                windSpeedTrend = "fitted huge angle up icon";
+            }
+            else if (windSpeedTrendVar1.getWindSpeed()< windSpeedTrendVar2.getWindSpeed() && windSpeedTrendVar2.getWindSpeed()<windSpeedTrendVar3.getWindSpeed()) {
+                windSpeedTrend = "fitted huge angle down icon";
+            }
+            else{
+                windSpeedTrend = "fitted huge arrows alternate horizontal icon";
+            }
+
+        }
+        return windSpeedTrend;
+    }
+    public static String getTrendPr(List<Reading> readings) {
+        String pressureTrend = "";
+        Reading pressureTrendVar1 = null;
+        Reading pressureTrendVar2 = null;
+        Reading pressureTrendVar3 = null;
+        if (readings.size() > 2) {
+
+            pressureTrendVar1 = readings.get(readings.size()-1);
+            pressureTrendVar2 = readings.get(readings.size()-2);
+            pressureTrendVar3 = readings.get(readings.size()-3);
+
+           // Logger.info("PT = " + pressureTrendVar1.getPressure() + ", " + pressureTrendVar2.getPressure() + ", " + pressureTrendVar3.getPressure());
+
+            if ((pressureTrendVar1.getPressure()> pressureTrendVar2.getPressure() )&& (pressureTrendVar2.getPressure()>pressureTrendVar3.getPressure())) {
+                pressureTrend = " fitted huge angle up icon";
+            }
+            else if ((pressureTrendVar1.getPressure()< pressureTrendVar2.getPressure()) && (pressureTrendVar2.getPressure()<pressureTrendVar3.getPressure())) {
+                pressureTrend = " fitted huge angle down icon";
+            }
+            else{
+                pressureTrend = "fitted huge arrows alternate horizontal icon";
+            }
+
+        }
+        return pressureTrend;
+    }
+    public static List<Station> sortStationABC(List<Station> stations)
+    {
+        Logger.info("Alphabetically sorting stations");
+        stations.sort(Comparator.comparing(Station::getName));
+        return stations;
+    }
+
 }
