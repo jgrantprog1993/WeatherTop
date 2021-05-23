@@ -93,7 +93,7 @@ public class Reading extends Model {
                 weatherIcon = "ui right floated fitted inverted yellow huge sun outline icon";
                 break;
             case 200:
-                weatherIcon = "ui right floated fitted inverted orange huge loud sun icon";
+                weatherIcon = "ui right floated fitted inverted orange huge loud sun icon corner add cloud icon";
                 break;
             case 300:
                 weatherIcon = "ui right floated fitted inverted grey huge cloud icon";
